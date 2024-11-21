@@ -32,7 +32,7 @@ function ConsultaCard({ consulta }) {
   const especialidadeImg = consulta.especialidade?.[0]?.imagem_url || "Imagem não encontrada";
   const especialidade = consulta.especialidade?.[0]?.nome || "Especialidade não definida";
   const medicoImg = consulta.medico?.[0]?.foto_medico || "Sem imagem";
-  const medicoNome = consulta.medico?.[0]?.nome || "Médico não definido";
+  const medicoNome = consulta.medico?.[0]?.nome_medico || "Médico não definido";
   const descricao = consulta.detalhes_consulta || "Descrição não disponível";
   const dia = new Date(consulta.dias_consulta).toLocaleDateString();
   const horario = new Date(consulta.horas_consulta).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -40,7 +40,7 @@ function ConsultaCard({ consulta }) {
   return (
     <div
       className="bg-zinc-200 rounded-lg w-[280px] h-[400px] p-4"
-      onClick={() => (window.location.href = "/consultas")}
+      onClick={() => (window.location.href = "bconsultas")}
     >
       <img src={especialidadeImg} className="w-full h-40 object-cover rounded-md" alt="Especialidade" />
       <p className="text-blue-950 text-xl font-bold font-sans justify-center items-center flex mt-2">{especialidade}</p>
