@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --medico-padrao-branco-cis: url('../../public/img/medico.png');
+  --azulprincipal: #0174DE;
+  --azulclaro: #92BFF0;
+  --azulescuro: #2954C7;
+  --cinza: #565454;
+  --fundodestaque: #7B9EE4;
+  --texto: #040F5D;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .bg-gradient-custom {
+    background: linear-gradient(to bottom, #0174DE, #92BFF0);
+  }
+}
