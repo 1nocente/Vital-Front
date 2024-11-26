@@ -36,14 +36,15 @@ function ConsultaCard({ consulta }) {
   const descricao = consulta.detalhes_consulta || "Descrição não disponível";
   const dia = new Date(consulta.dias_consulta).toLocaleDateString();
   const horario = new Date(consulta.horas_consulta).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const status = consulta.status?.[0]?.descricao || "Não agendado"
 
   return (
     <div
-      className="bg-zinc-200 rounded-lg w-[280px] h-[400px] p-4"
+      className="bg-zinc-200 rounded-lg w-[300px] h-[430px] p-4"
       onClick={() => (window.location.href = "bconsultas")}
     >
       <img src={especialidadeImg} className="w-full h-40 object-cover rounded-md" alt="Especialidade" />
-      <p className="text-blue-950 text-xl font-bold font-sans justify-center items-center flex mt-2">{especialidade}</p>
+      <h1 className="text-blue-950 text-xl font-bold font-sans justify-center items-center flex mt-2 text-3xl">{especialidade}</h1>
       <p className="text-blue-950 justify-center items-center flex">{descricao}</p>
       <div className="flex mt-[20px] items-center">
         <img src={medicoImg} className="rounded-full w-[50px] h-[50px] ml-[10px]" alt="Médico" />
@@ -53,6 +54,10 @@ function ConsultaCard({ consulta }) {
         <p className="text-blue-950 ml-[20px] font-bold">Dia: {dia}</p>
         <p className="text-blue-950 ml-[20px] font-bold">Horário: {horario}</p>
       </div>
+      <div className=" w-24 h-7 bg-blue-950 rounded-full ml-24 mt-6">
+        <p className="text-white font-bold ml-2">{status}</p>
+      </div>
+
     </div>
   );
 }
@@ -119,7 +124,7 @@ export default function Inicio() {
             <input
               type="text"
               placeholder="Pesquisar..."
-              className="bg-[--navempresa] pl-3 pr-10 py-2 ml-[60vh] mt-[30px] rounded-full w-96 h-14 border focus:border-blue-900 focus:bg-blue-5 transition-all"
+              className="bg-[--navempresa] pl-3 pr-10 py-2 ml-[60vh] mt-[30px] rounded-full w-1/5 h-14 border focus:border-blue-900 focus:bg-blue-5 transition-all"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -130,9 +135,9 @@ export default function Inicio() {
 
           {/* Consultas */}
           <div>
-            <h1 className="text-2xl font-bold text-[--font] ml-[80px] mt-[30px]">CONSULTAS</h1>
+            <h1 className="text-4xl font-bold text-[--font] ml-[80px] mt-[60px]">CONSULTAS</h1>
           </div>
-          <div className="flex mt-[30px] ml-[80px] grid overflow-x-scroll w-[1520px]">
+          <div className="flex mt-[30px] ml-[80px] grid overflow-x-scroll w-[2020px]">
             <div id="contanierConsulta" className="flex space-x-4 gap-4 mb-[20px]">
               {consultas.map((consulta, index) => (
                 <ConsultaCard key={index} consulta={consulta} />
@@ -142,7 +147,7 @@ export default function Inicio() {
 
           {/* Galeria de Vídeos */}
           <div>
-            <h1 className="text-2xl font-bold text-[--font] ml-[80px] mt-[50px]">GALERIA</h1>
+            <h1 className="text-4xl font-bold text-[--font] ml-[80px] mt-[50px]">GALERIA</h1>
           </div>
           <div className="flex flex-wrap gap-4 ml-[80px] mt-[20px]">
             {videos.length > 0 ? (

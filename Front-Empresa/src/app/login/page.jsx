@@ -67,19 +67,19 @@ const Login = () => {
   return (
     <div className="bg-gradient-to-r from-blue-700 to-blue-300 min-h-screen flex flex-col items-center justify-center">
       <div className="bg-blue-300/75 w-2/6 h-auto items-center rounded-lg mt-[10px] absolute">
-        <div className="ml-72 mt-10 flex">
+        <div className="ml-72 mt-10 flex mb-10">
           <img src="./img/logo.png" alt="Logo" />
-          <h2 className="font-sans text-5xl text-white mt-10">Vital+</h2>
+          <h2 className="font-sans font-bold text-5xl text-white mt-10 ">Vital+</h2>
         </div>
 
         <div className="ml-52">
-          <h1 className="font-sans text-3xl text-blue-900 ml-24">Seja Bem-vindo!</h1>
-          <h2 className="font-bold font-sans text-3xl text-blue-900 mt-5 ml-40">
+          <h1 className="font-sans text-5xl text-blue-900 ml-16">Seja Bem-vindo!</h1>
+          <h2 className="font-bold font-sans text-4xl text-blue-900 mt-5 ml-40">
             LOGIN
           </h2>
         </div>
 
-        <div className="mt-16 ml-32">
+        <div className="mt-16 ml-40">
           <label htmlFor="cnpj" className="block text-white text-base font-sans mb-2 text-xl">
             CNPJ
           </label>
@@ -91,10 +91,10 @@ const Login = () => {
             value={cnpj}
             onChange={(e) => setCnpj(e.target.value)}
           />
-          <img src="./img/EmpresaLogin.png" alt="Hospital" className="absolute ml-[450px] mt-[-70px]" />
+          <img src="./img/EmpresaLogin.png" alt="Hospital" className="absolute ml-[430px] mt-[-70px]" />
         </div>
 
-        <div className="mt-14 ml-32">
+        <div className="mt-14 ml-40">
           <label htmlFor="senha" className="block text-white text-base font-sans mb-2 text-xl">
             SENHA
           </label>
@@ -108,7 +108,7 @@ const Login = () => {
           />
         </div>
 
-        <div className="mt-20 mb-10 ml-64">
+        <div className="mt-20 mb-5 ml-64">
           <button
             className="bg-blue-900 text-white rounded-3xl w-80 h-14 text-2xl"
             onClick={handleLogin}
@@ -118,7 +118,7 @@ const Login = () => {
         </div>
 
         <button
-            className="bg-blue-200 text-white rounded-3xl w-60 h-8 text-base mt-4  ml-72"
+            className="bg-blue-200 text-white rounded-3xl w-60 h-8 text-base mb-16 ml-72"
             onClick={handleCadastro}
           >
             CADASTRAR A EMPRESA

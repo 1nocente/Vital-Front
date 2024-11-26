@@ -21,31 +21,38 @@ async function getConsultas() {
 
 // Componente para exibir o card de uma consulta
 function ConsultaCard({ consulta }) {
-  const diasData = new Date(consulta.dias_consulta);
-  const dia =
-    !isNaN(diasData) ? diasData.toLocaleDateString() : consulta.dias_consulta;
+  const especialidadeImg = consulta.especialidade?.[0]?.imagem_url || "Imagem não encontrada";
+  const especialidade = consulta.especialidade?.[0]?.nome || "Especialidade não definida";
+  const medicoImg = consulta.medico?.[0]?.foto_medico;
+  const medicoNome = consulta.medico?.[0]?.nome_medico || "Médico não definido";
+  const descricao = consulta.detalhes_consulta || "Descrição não disponível";
+  const dia = new Date(consulta.dias_consulta).toLocaleDateString();
+  const horario = new Date(consulta.horas_consulta).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const status = consulta.status?.[0]?.descricao || "Não agendado"
 
   return (
     <div
-      className="bg-zinc-200 rounded-lg w-[300px] h-[330px] p-4"
+      className="bg-zinc-200 rounded-lg w-[300px] h-[430px] p-4"
       onClick={() => (window.location.href = `/infoConsulta?id=${consulta.id_consulta}`)}
     >
-      <img
-       src={consulta.imagem_url} 
-      />
-      <p className="text-blue-950 text-xl font-bold font-sans ml-[20px]">
-        {consulta.nome_especialidade}
-      </p>
-      <h2 className="text-blue-950 text-lg font-bold ml-[20px]">
-        {consulta.nome_medico}
-      </h2>
-      <p className="text-blue-950 ml-[20px]">
-        Descrição: {consulta.detalhes_consulta}
-      </p>
-      <p className="text-blue-950 ml-[20px]">Dia: {dia}</p>
-      <p className="text-blue-950 ml-[20px]">
-        Horário: {consulta.horas_consulta.slice(11, 19)}
-      </p>
+      <img src={especialidadeImg} className="w-full h-40 object-cover rounded-md" alt="Especialidade" />
+      <h1 className="text-blue-950 text-xl font-bold font-sans justify-center items-center flex mt-2 text-3xl">{especialidade}</h1>
+      <p className="text-blue-950 justify-center items-center flex">{descricao}</p>
+      <div className="flex mt-[20px] items-center">
+        <img src={medicoImg} className="rounded-full w-[50px] h-[50px] ml-[10px]" alt="Médico" />
+        <h2 className="text-blue-950 text-lg font-bold ml-[10px] fonts-sans mt-[10px]">{medicoNome}</h2>
+      </div>
+      <div className="flex mt-[10px]">
+        <p className="text-blue-950 ml-[20px] font-bold">Dia: {dia}</p>
+        <p className="text-blue-950 ml-[20px] font-bold">Horário: {horario}</p>
+      </div>
+
+      <div className=" w-24 h-7 bg-blue-950 rounded-full ml-24 mt-6">
+        <p className="text-white font-bold ml-2">{status}</p>
+      </div>
+
+
+
     </div>
   );
 }
@@ -68,7 +75,7 @@ function Consultas() {
       <NavBarLayout>
         <div className="flex-1 p-4">
           <div className="flex">
-            <h1 className="text-4xl font-bold text-[--font] p-10">CONSULTAS</h1>
+            <h1 className="text-4xl font-bold text-[--font] p-10 mt-[100px]">CONSULTAS</h1>
             <div className="relative">
               <input
                 type="text"
@@ -93,7 +100,7 @@ function Consultas() {
           <div className="flex mt-20 ml-[300px] grid">
             <div
               id="contanierConsulta"
-              className="flex flex-wrap gap-4 w-[1100px] h-[100px]"
+              className="flex flex-wrap gap-6 w-[1600px] h-[100px]"
             >
               {consultas.map((consulta, index) => (
                 <ConsultaCard key={index} consulta={consulta} />

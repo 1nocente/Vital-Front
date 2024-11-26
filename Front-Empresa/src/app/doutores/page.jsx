@@ -19,14 +19,14 @@ function MedicoCard({ medico }) {
     
     return (
       <div
-      className="bg-zinc-200 rounded-lg w-[1200px] h-[70px] p-4 " 
+      className="bg-zinc-200 rounded-lg w-[1600px] h-[70px] p-4 " 
       onClick={() => (window.location.href = "/consultas")}
     >
         
      <img src={medicoImg} className="rounded-full w-[50px] h-[50px] ml-[20px] mt-[-5px] " />
 
       <div className="flex justify-center items-center mt-[-40px] ">
-      <h2 className="text-blue-950 text-2xl font-bold  fonts-sans ml-[50px] ">{medicoNome}</h2>
+      <h2 className="text-blue-950 text-2xl font-bold  fonts-sans ml-[10px] ">{medicoNome}</h2>
 
       <div className="flex justify-center items-center ">
       <p className="flex justify-center items-center text-blue-950 text-lg font-sans ml-[400px] ">{especialidade}</p>
@@ -68,7 +68,7 @@ function MedicoCard({ medico }) {
             <NavBarLayout>
                 <div className="flex-1 p-4">
                     <div className="flex">
-                    <h1 className="text-4xl font-bold text-[--font] p-10">DOUTORES CADASTRADOS</h1>
+                    <h1 className="text-4xl font-bold text-[--font] p-10 mt-[100px] ml-[100px]">DOUTORES CADASTRADOS</h1>
                     
 
                 <div className="relative ml-[-250px]">
@@ -89,7 +89,7 @@ function MedicoCard({ medico }) {
 
                     <button
                         onClick={() => setOpenModal(true)}
-                        className="bg-[--font] w-[25vh] h-[5vh] rounded-full ml-[140vh] mt-[10px]"
+                        className="bg-[--font] w-[25vh] h-[5vh] rounded-full ml-[130vh] mt-[10px]"
                     >
                         <h1 className="text-white font-bold">CADASTRAR DOUTORES +</h1>
                     </button>
