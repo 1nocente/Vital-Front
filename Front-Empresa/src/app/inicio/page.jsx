@@ -31,7 +31,7 @@ async function getVideos() {
 function ConsultaCard({ consulta }) {
   const especialidadeImg = consulta.especialidade?.[0]?.imagem_url || "Imagem não encontrada";
   const especialidade = consulta.especialidade?.[0]?.nome || "Especialidade não definida";
-  const medicoImg = consulta.medico?.[0]?.foto_medico || "Sem imagem";
+  const medicoImg = consulta.medico?.[0]?.foto_medico;
   const medicoNome = consulta.medico?.[0]?.nome_medico || "Médico não definido";
   const descricao = consulta.detalhes_consulta || "Descrição não disponível";
   const dia = new Date(consulta.dias_consulta).toLocaleDateString();
