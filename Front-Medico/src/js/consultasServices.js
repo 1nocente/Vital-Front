@@ -2,7 +2,7 @@
 
 export async function getConsultasMedico(medicoId) {
     try {
-        const response = await fetch(`https://vital-umqy.onrender.com/v1/vital/consulta/${medicoId}`);
+        const response = await fetch(`https://vital-umqy.onrender.com/v1/vital/consulta/medico/${medicoId}`);
         if (!response.ok) {
             throw new Error("Erro ao buscar consultas");
         }

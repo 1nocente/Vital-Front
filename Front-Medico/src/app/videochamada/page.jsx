@@ -27,15 +27,9 @@ const Videochamada = () => {
         <NavBarLayout>
             <div className="flex flex-col items-center p-4">
                 <h1 className="text-xl font-semibold mb-4">
-                    Consulta ID: {router.query && router.query.id ? router.query.id : 'Carregando...'}
+                    Chamada de Vídeo
                 </h1>
-                <button
-                    onClick={meetingUrl ? endMeeting : createMeeting}
-                    className="mb-4 px-4 py-2 bg-blue-500 text-white rounded"
-                >
-                    {meetingUrl ? "Encerrar Reunião" : "Criar Reunião"}
-                </button>
-                <div id="meeting-container" className="w-full">
+                <div id="meeting-container" className="w-full mb-16"> {/* Espaço reservado acima do botão */}
                     {meetingUrl ? (
                         <iframe
                             title="Jitsi Meeting"
@@ -46,6 +40,16 @@ const Videochamada = () => {
                     ) : (
                         <p className="text-gray-600">Aguardando a criação da chamada de vídeo...</p>
                     )}
+                </div>
+                <div className="fixed bottom-0 left-0 w-full bg-white shadow-lg">
+                    <div className="flex justify-center p-4">
+                        <button
+                            onClick={meetingUrl ? endMeeting : createMeeting}
+                            className="px-4 py-2 bg-blue-500 text-white rounded"
+                        >
+                            {meetingUrl ? "Encerrar Reunião" : "Criar Reunião"}
+                        </button>
+                    </div>
                 </div>
             </div>
         </NavBarLayout>

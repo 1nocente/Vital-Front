@@ -8,25 +8,60 @@ import { getConsultasMedico } from "@/js/consultasServices.js";
 
 export default function Inicio() {
     const [consultas, setConsultas] = useState(null);
-    const medicoId = "123"; // Substitua pelo ID do médico que deseja buscar
+    const [nomeMedico, setNomeMedico] = useState("Carregando...");
+    const [imagemMedico, setImagemMedico] = useState("/img/medico.png");
 
     useEffect(() => {
         async function fetchData() {
-            const data = await getConsultasMedico(medicoId);
-            setConsultas(data ? data.quantidade : 0);
-        }
-        fetchData();
-    }, [medicoId]);
+            const medicoId = localStorage.getItem("idC");
 
-    // Dados do médico
-    const nomeMedico = "Dr. João Silva";
-    const imagemMedico = "/img/medico.png"; // Substitua pela URL da imagem
+            if (!medicoId || isNaN(medicoId)) {
+                console.error("ID do médico inválido ou não encontrado.");
+                setConsultas(0); // Define consultas como 0 em caso de erro
+                return;
+            }
+
+            try {
+                // Busca o número de consultas
+                console.log("Buscando consultas para o médico ID:", medicoId);
+                const consultasData = await getConsultasMedico(medicoId);
+
+                if (consultasData && consultasData.medico) {
+                    console.log("Dados de consultas recebidos:", consultasData);
+                    setConsultas(consultasData.medico.length); // Define o número de consultas
+                } else {
+                    console.warn("Formato inesperado de dados de consultas:", consultasData);
+                    setConsultas(0);
+                }
+
+                // Busca os dados do médico
+                console.log("Buscando dados do médico ID:", medicoId);
+                const response = await fetch(`https://vital-umqy.onrender.com/v1/vital/Medico/${medicoId}`);
+                const medicoData = await response.json();
+
+                if (medicoData && medicoData.medico && medicoData.medico[0]) {
+                    const medico = medicoData.medico[0];
+                    console.log("Dados do médico recebidos:", medico);
+                    setNomeMedico(medico.nome_medico);
+                    setImagemMedico(medico.foto_medico || "/img/medico.png"); // Usa uma imagem padrão se a foto não estiver disponível
+                } else {
+                    console.warn("Formato inesperado de dados do médico:", medicoData);
+                    setNomeMedico("Médico não encontrado");
+                }
+            } catch (error) {
+                console.error("Erro ao buscar dados:", error);
+                setConsultas(0);
+                setNomeMedico("Erro ao carregar");
+            }
+        }
+
+        fetchData();
+    }, []);
 
     return (
         <div className="flex">
             <NavBarLayout />
-            
-            {/* Componente Header com margem alinhada ao NavBar */}
+
             <div className="flex-grow">
                 <Header nome={nomeMedico} imagem={imagemMedico} />
 
@@ -61,11 +96,11 @@ export default function Inicio() {
                         />
                         <div className="flex flex-col">
                             <h1 className="font-semibold">Consultas</h1>
-                            <p className="text-[--texto] text-2xl font-bold">{consultas}</p>
+                            <p className="text-[--texto] text-2xl font-bold">
+                                {consultas !== null ? consultas : "Carregando..."}
+                            </p>
                         </div>
                     </div>
-
-                    {/* Outros componentes e cards */}
                 </div>
             </div>
         </div>

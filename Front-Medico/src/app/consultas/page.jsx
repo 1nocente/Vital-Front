@@ -21,7 +21,7 @@ const ConsultaDiaria = () => {
             }
     
             try {
-                const response = await fetch(`https://vital-umqy.onrender.com/v1/vital/consulta/${medicoId}`);
+                const response = await fetch(`https://vital-umqy.onrender.com/v1/vital/consulta/medico/${medicoId}`);
                 const data = await response.json();
     
                 // Verifica se 'data.medico' existe e é um array
@@ -131,7 +131,7 @@ const ConsultaDiaria = () => {
 
 
     const handleIniciar = (idConsulta) => {
-        router.push(`/videochamada/${idConsulta}`); // Direciona para a tela de videochamada passando o ID da consulta
+        router.push(`/videochamada`); // Direciona para a tela de videochamada passando o ID da consulta
     };
 
     // Agrupamento das consultas por mês para exibição
