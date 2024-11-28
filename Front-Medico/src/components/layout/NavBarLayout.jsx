@@ -8,7 +8,7 @@ const NavBarLayout = ({children}) => {
         <div className="flex">
             <NavBar></NavBar>
             {/* <Header /> */}
-            <main className="w-full">
+            <main className="">
                 {children}
             </main>
         </div>
