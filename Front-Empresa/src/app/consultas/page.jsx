@@ -32,8 +32,8 @@ function ConsultaCard({ consulta, onCardClick }) {
 
   return (
     <div
-      className="bg-zinc-200 rounded-lg w-[300px] h-[430px] p-4"
-      onClick={() => onCardClick(consulta)} // Passa a consulta para o handler de clique
+      className="bg-zinc-200 rounded-lg w-[300px] h-[430px] p-4 cursor-pointer"
+      onClick={() => onCardClick(consulta)}
     >
       <img src={especialidadeImg} className="w-full h-40 object-cover rounded-md" alt="Especialidade" />
       <h1 className="text-blue-950 text-xl font-bold font-sans justify-center items-center flex mt-2 text-3xl">{especialidade}</h1>
@@ -53,12 +53,60 @@ function ConsultaCard({ consulta, onCardClick }) {
   );
 }
 
+function ConsultaDetalhesModal({ isOpen, consulta, onClose }) {
+  if (!isOpen || !consulta) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-white w-[500px] p-6 rounded-lg shadow-lg">
+        <img src={consulta.especialidade?.[0]?.imagem_url || "Imagem não encontrada"} alt="" />
+        <div className=" flex justify-center items-center">
+        <p className="text-blue-950 text-3xl font-bold ">{consulta.especialidade?.[0]?.nome || "Não disponível"}</p>
+        </div>
+        
+        <div className="flex justify-center items-center ml-4">
+        <p className="text-sm text-zinc-500">{consulta.especialidade?.[0]?.descricao || "Não disponível"}</p>
+        </div>
+       
+     
+
+        <div className="flex mt-4 ml-5">
+        <img className="w-9" src="./img/doctor 2.png" alt="" />
+        <p className="text-blue-950 text-xl ml-2 mt-2"> {consulta.medico?.[0]?.nome_medico || "Não definido"}</p>
+        </div>
+        
+
+        <div className="flex mt-4 ml-5 ">
+          <img className="w-7" src="./img/calendario.png" alt="" />
+        <p className="text-blue-950 text-xl ml-2"> {new Date(consulta.dias_consulta).toLocaleDateString()}</p>
+        </div>
+        
+        <div className="flex mt-4 ml-5">
+        <img className="w-7" src="./img/relogio.png" alt="" />  
+        <p className="text-blue-950 text-xl ml-2">{new Date(consulta.horas_consulta).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</p>
+        </div>
+       
+       <div className=" flex justify-center items-center">
+       <button
+          onClick={onClose}
+          className="mt-4 bg-blue-950 text-white py-2 px-4 rounded hover:bg-blue-900"
+        >
+          Fechar
+        </button>
+
+       </div>
+        
+      </div>
+    </div>
+  );
+}
+
 function Consultas() {
   const [openModal, setOpenModal] = useState(false);
-  const [consultaSelecionada, setConsultaSelecionada] = useState(null); // Estado para consulta selecionada
+  const [openDetalhesModal, setOpenDetalhesModal] = useState(false);
   const [consultas, setConsultas] = useState([]);
+  const [consultaSelecionada, setConsultaSelecionada] = useState(null);
 
-  // Carrega as consultas ao montar o componente
   useEffect(() => {
     async function carregarConsultas() {
       const dados = await getConsultas();
@@ -67,10 +115,9 @@ function Consultas() {
     carregarConsultas();
   }, []);
 
-  // Função para abrir o modal com detalhes
   const abrirDetalhesModal = (consulta) => {
-    setConsultaSelecionada(consulta); // Define a consulta selecionada
-    setOpenModal(true); // Abre o modal
+    setConsultaSelecionada(consulta);
+    setOpenDetalhesModal(true);
   };
 
   return (
@@ -78,67 +125,39 @@ function Consultas() {
       <NavBarLayout>
         <div className="flex-1 p-4">
           <div className="flex">
-            <h1 className="text-5xl font-bold text-[--font] p-10 mt-[100px]">CONSULTAS</h1>
-            <div className="relative ml-[-250px]">
-                            <input
-                                type="text"
-                                placeholder="Pesquisar..."
-                                className="bg-[--navempresa] ml-[500px] pl-3 pr-10 py-2 mt-[40px] rounded-full w-96 h-14 border focus:border-blue-900 focus:bg-blue-5 transition-all"
-                            />
-                            <button>
-                                <img
-                                    src="./img/lupa.png"
-                                    alt="Pesquisar"
-                                    className="absolute ml-[-50px] mt-[-19px] w-7"
-                                />
-                            </button>
-                        </div>
+            <h1 className="text-4xl font-bold text-[--font] p-10 mt-[100px]">CONSULTAS</h1>
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Pesquisar..."
+                className="bg-[--navempresa] ml-[500px] pl-3 pr-10 py-2 mt-[50px] rounded-full w-96 h-14 border focus:border-blue-900 focus:bg-blue-5 transition-all"
+              />
+              <button>
+                <img
+                  src="./img/lupa.png"
+                  alt=""
+                  className="absolute ml-[-50px] mt-[-19px] w-7"
+                />
+              </button>
+            </div>
           </div>
 
           <Modal
             isOpen={openModal}
-            setModalOpen={() => setOpenModal(false)}
-          >
-            {/* Renderiza os detalhes da consulta no modal */}
-            {consultaSelecionada && (
-              <div className="p-4">
-                <h2 className="text-2xl font-bold text-blue-950">
-                  {consultaSelecionada.especialidade?.[0]?.nome || "Especialidade não definida"}
-                </h2>
-                <p className="text-sm text-zinc-600 mt-2">
-                  {consultaSelecionada.detalhes_consulta || "Descrição não disponível"}
-                </p>
-                <div className="mt-4">
-                  <p>
-                    <strong>Médico:</strong> {consultaSelecionada.medico?.[0]?.nome_medico || "Não definido"}
-                  </p>
-                  <p>
-                    <strong>Data:</strong> {new Date(consultaSelecionada.dias_consulta).toLocaleDateString()}
-                  </p>
-                  <p>
-                    <strong>Horário:</strong>{" "}
-                    {new Date(consultaSelecionada.horas_consulta).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </p>
-                  <p>
-                    <strong>Status:</strong>{" "}
-                    {consultaSelecionada.status?.[0]?.descricao || "Não agendado"}
-                  </p>
-                </div>
-                <button
-                  className="mt-4 w-full bg-blue-950 text-white py-2 px-4 rounded hover:bg-blue-900"
-                  onClick={() => setOpenModal(false)}
-                >
-                  Fechar
-                </button>
-              </div>
-            )}
-          </Modal>
+            setModalOpen={() => setOpenModal(!openModal)}
+          />
 
-          <div className="flex mt-20 ml-[200px] grid">
-            <div id="contanierConsulta" className="flex flex-wrap gap-5 w-[1300px] h-[100px]">
+          <ConsultaDetalhesModal
+            isOpen={openDetalhesModal}
+            consulta={consultaSelecionada}
+            onClose={() => setOpenDetalhesModal(false)}
+          />
+
+          <div className="flex mt-20 ml-[180px] grid">
+            <div
+              id="contanierConsulta"
+              className="flex flex-wrap gap-6 w-[1300px] h-[100px]"
+            >
               {consultas.map((consulta, index) => (
                 <ConsultaCard key={index} consulta={consulta} onCardClick={abrirDetalhesModal} />
               ))}
@@ -151,3 +170,4 @@ function Consultas() {
 }
 
 export default Consultas;
+

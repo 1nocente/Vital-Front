@@ -4,6 +4,51 @@ import { getConsultas } from "@/js/info";
 import { useState } from "react";
 
 
+<Modal
+isOpen={openModal}
+setModalOpen={() => setOpenModal(false)}
+>
+{/* Renderiza os detalhes da consulta no modal */}
+{consultaSelecionada && (
+  <div className="p-4">
+    <h2 className="text-2xl font-bold text-blue-950">
+      {consultaSelecionada.especialidade?.[0]?.nome || "Especialidade não definida"}
+    </h2>
+    <p className="text-sm text-zinc-600 mt-2">
+      {consultaSelecionada.detalhes_consulta || "Descrição não disponível"}
+    </p>
+    <div className="mt-4">
+      <p>
+        <strong>Médico:</strong> {consultaSelecionada.medico?.[0]?.nome_medico || "Não definido"}
+      </p>
+      <p>
+        <strong>Data:</strong> {new Date(consultaSelecionada.dias_consulta).toLocaleDateString()}
+      </p>
+      <p>
+        <strong>Horário:</strong>{" "}
+        {new Date(consultaSelecionada.horas_consulta).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        })}
+      </p>
+      <p>
+        <strong>Status:</strong>{" "}
+        {consultaSelecionada.status?.[0]?.descricao || "Não agendado"}
+      </p>
+    </div>
+    <button
+      className="mt-4 w-full bg-blue-950 text-white py-2 px-4 rounded hover:bg-blue-900"
+      onClick={() => setOpenModal(false)}
+    >
+      Fechar
+    </button>
+  </div>
+)}
+</Modal>
+
+// Componente para exibir o card de uma consulta
+
+
 function infoConsulta (consulta) {
 
     const nomeConsulta = document.getElementById('nomeConsulta');
