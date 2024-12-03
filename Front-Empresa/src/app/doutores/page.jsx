@@ -18,7 +18,7 @@ function MedicoCard({ medico, onMedicoClick }) {
 
     return (
         <div
-            className="bg-zinc-200 rounded-lg w-[1600px] h-[70px] p-4 cursor-pointer"
+            className="bg-zinc-200 rounded-lg w-[1300px] h-[70px] p-4 cursor-pointer"
             onClick={() => onMedicoClick(medico)}
         >
             <img
@@ -38,15 +38,6 @@ function MedicoCard({ medico, onMedicoClick }) {
                     </p>
                 </div>
 
-                <button
-                    className="text-blue-950 text-2xl ml-[400px]"
-                    onClick={(e) => {
-                        e.stopPropagation(); // Evita o clique no botão abrir o modal do card
-                        window.location.href = "/infoMedico";
-                    }}
-                >
-                    +
-                </button>
             </div>
         </div>
     );
@@ -57,28 +48,33 @@ function DetalhesMedicoModal({ isOpen, medico, onClose }) {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white w-[500px] p-6 rounded-lg shadow-lg flex">
+            <div className="bg-white w-[600px]  p-6 rounded-lg shadow-lg flex">
                 <img
                     src={medico.foto_medico || "Sem imagem"}
                     alt="Foto do Médico"
                     className="w-48 h-48 rounded-full mb-4"
                 />
                 <div className="">
-                <p className=" text-3xl text-blue-950 font-bold">{medico.nome_medico}</p>
-                <p className="text-xl text-blue-950">{medico.especialidade || "Não definida"}</p>
-                <p>{medico.email_medico || "Não disponível"}</p>
-                <p><strong>CRM: </strong> {medico.crm || "Não disponível"}</p>
-                <p>{medico.telefone_medico || "Não disponível"}</p>
+                    <div className="ml-10">
+                    <p className=" text-3xl text-blue-950 font-bold">{medico.nome_medico}</p>
+                    <p className="text-xl text-blue-950">{medico.especialidade || "Não definida"}</p>
+                    </div>
+                
+                <div className=" ml-10 mt-4">
+                <p className="text-lg text-blue-950">{medico.email_medico || "Não disponível"}</p>
+                <p className="text-lg text-blue-950"><strong>CRM: </strong> {medico.crm || "Não disponível"}</p>
+                <p className="text-lg text-blue-950">{medico.telefone_medico || "Não disponível"}</p>
 
+                </div>
+
+                </div>
 
                 <button
                     onClick={onClose}
-                    className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                    className="mt- bg-blue-950 text-white w-[100px] h-[40px] ml-16 rounded-full hover:bg-blue-900 "
                 >
                     Fechar
                 </button>
-                
-                </div>
                 
                 
             </div>
@@ -119,8 +115,8 @@ export default function Medicos() {
             <NavBarLayout>
                 <div className="flex-1 p-4">
                     <div className="flex">
-                        <h1 className="text-4xl font-bold text-[--font] p-10 mt-[100px] ml-[100px]">
-                            DOUTORES CADASTRADOS
+                        <h1 className="text-5xl font-bold text-[--font] p-10 mt-[100px] ml-[100px]">
+                            DOUTORES
                         </h1>
 
                         <div className="relative ml-[-250px]">
@@ -141,7 +137,7 @@ export default function Medicos() {
 
                     <button
                         onClick={() => setOpenCadastroModal(true)}
-                        className="bg-[--font] w-[25vh] h-[5vh] rounded-full ml-[130vh] mt-[10px]"
+                        className="bg-[--font] w-[25vh] h-[5vh] rounded-full ml-[110vh] mt-[10px]"
                     >
                         <h1 className="text-white font-bold">CADASTRAR DOUTORES +</h1>
                     </button>

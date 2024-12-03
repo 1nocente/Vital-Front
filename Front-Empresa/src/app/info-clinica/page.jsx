@@ -40,7 +40,7 @@ function EmpresaCard({ empresa }) {
       </div>
 
       <div className="flex justify-center items-center ml-[-260px]">
-        <div className="flex ml-[27vh] mt-5">
+        <div className="flex ml-[28vh] mt-5">
           <img src="./img/local.png" alt="" className="h-9" />
           <h1 className="text-3xl text-gray-500 mt-2 ml-[68px]">{cidade}, </h1>
         </div>
@@ -119,7 +119,7 @@ export default function Empresa() {
       <div className="flex">
         <NavBarLayout>
           <div className="flex-1 p-4">
-            <h1 className="text-5xl font-bold text-[--font] p-10 mt-[100px]">EMPRESA</h1>
+            <h1 className="text-5xl font-bold text-[--font]  mt-[50px] ml-10 mb-10">EMPRESA</h1>
             <div id="contanierEmpresa">
               {Array.isArray(empresa) && empresa.length > 0 ? (
                 empresa.map((empresa, index) => (
