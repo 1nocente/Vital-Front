@@ -225,7 +225,7 @@ const CadastroEmpresa = () => {
                                 type="text"
                                 id="bairro"
                                 name="bairro"
-                                value={formData.cep}
+                                value={formData.bairro}
                                 onChange={handleChange}
                                 className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
@@ -298,7 +298,7 @@ const CadastroEmpresa = () => {
                                 type="text"
                                 id="cidade"
                                 name="cidade"
-                                value={formData.cep}
+                                value={formData.cidade}
                                 onChange={handleChange}
                                 className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
@@ -362,7 +362,7 @@ const CadastroEmpresa = () => {
                                 type="text"
                                 id="estado"
                                 name="estado"
-                                value={formData.cep}
+                                value={formData.estado}
                                 onChange={handleChange}
                                 className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
