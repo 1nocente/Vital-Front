@@ -128,7 +128,7 @@ export default function Inicio() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button onClick={handleSearch} className="absolute right-[70vh] top-[48px]">
+            <button onClick={handleSearch} className="absolute right-[61vh] top-[48px]">
               <img src="./img/lupa.png" alt="Buscar" className="w-7" />
             </button>
           </div>
@@ -137,7 +137,7 @@ export default function Inicio() {
           <div>
             <h1 className="text-4xl font-bold text-[--font] ml-[80px] mt-[60px]">CONSULTAS</h1>
           </div>
-          <div className="flex mt-[30px] ml-[80px] grid overflow-x-scroll w-[2020px]">
+          <div className="flex mt-[30px] ml-[80px] grid overflow-x-scroll w-[1500px]">
             <div id="contanierConsulta" className="flex space-x-4 gap-4 mb-[20px]">
               {consultas.map((consulta, index) => (
                 <ConsultaCard key={index} consulta={consulta} />

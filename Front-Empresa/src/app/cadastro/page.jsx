@@ -130,14 +130,15 @@ const CadastroEmpresa = () => {
 
     return (
         <div className="bg-gradient-to-r from-blue-500 to-blue-300 min-h-screen flex items-center justify-center">
-            <div className="bg-blue-300/75 w-3/5 h-auto flex flex-col items-center rounded-lg p-10">
+            <div className="bg-blue-300/75 w-4/6 h-auto flex flex-col items-center rounded-lg p-10">
                 <div className="flex items-center justify-center mb-6">
                     <img src="./img/logo.png" alt="Logo" className="w-24" />
-                    <h2 className="font-bold font-sans text-2xl text-blue-900 ml-4">
+                    <h2 className="font-bold font-sans text-4xl text-blue-900 ml-4">
                         CADASTRO
                     </h2>
                 </div>
                 <form onSubmit={handleCadastro} className="w-full">
+                    <div className="flex">
                     <div className="flex flex-col mb-6">
                         <label
                             htmlFor="nomeEmpresa"
@@ -152,11 +153,10 @@ const CadastroEmpresa = () => {
                             value={formData.nome_empresa}
                             onChange={handleChange}
                             placeholder="Nome da empresa"
-                            className="shadow-2xl w-full h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
-                    <div className="flex flex-wrap gap-4">
-                        <div className="flex flex-col w-full md:w-1/2">
+                    <div className="flex flex-col w-full md:w-1/2 ml-4">
                             <label
                                 htmlFor="nomeProprietario"
                                 className="block text-stone-500 text-base font-sans mb-2"
@@ -170,10 +170,32 @@ const CadastroEmpresa = () => {
                                 value={formData.nome_proprietario}
                                 onChange={handleChange}
                                 placeholder="Nome do proprietário"
-                                className="shadow-2xl w-full h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
+
                         <div className="flex flex-col w-full md:w-1/2">
+                            <label
+                                htmlFor="cep"
+                                className="block text-stone-500 text-base font-sans mb-2"
+                            >
+                                CEP
+                            </label>
+                            <input
+                                type="text"
+                                id="cep"
+                                name="cep"
+                                value={formData.cep}
+                                onChange={handleChange}
+                                placeholder="12345-678"
+                                className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                    </div>
+                    
+                    <div className="flex">
+                       
+                        <div className="flex flex-col  md:w-1/2">
                             <label
                                 htmlFor="email"
                                 className="block text-stone-500 text-base font-sans mb-2"
@@ -187,11 +209,30 @@ const CadastroEmpresa = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 placeholder="seu@email.com"
-                                className="shadow-2xl w-full h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="shadow-2xl w-[780px] h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
+
+
+                        <div className=" w-full md:w-1/2 ml-[200px]">
+                            <label
+                                htmlFor="bairro"
+                                className="block text-stone-500 text-base font-sans mb-2"
+                            >
+                                Bairro
+                            </label>
+                            <input
+                                type="text"
+                                id="bairro"
+                                name="bairro"
+                                value={formData.cep}
+                                onChange={handleChange}
+                                className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+
                     </div>
-                    <div className="flex flex-wrap gap-4">
+                    <div className="flex flex-wrap gap-4 mt-6">
                         <div className="flex flex-col w-full md:w-1/2">
                             <label
                                 htmlFor="senha"
@@ -207,7 +248,7 @@ const CadastroEmpresa = () => {
                                     value={formData.senha}
                                     onChange={handleChange}
                                     placeholder="**********"
-                                    className="shadow-2xl w-full h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
                                 <img
                                     onClick={togglePasswordVisibility}
@@ -221,32 +262,117 @@ const CadastroEmpresa = () => {
                                             ? "Ocultar senha"
                                             : "Mostrar senha"
                                     }
-                                    className="absolute w-5 top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
+                                    className="absolute w-5 top-1/2 ml-[340px] transform -translate-y-1/2 cursor-pointer"
                                 />
                             </div>
                         </div>
-                        <div className="flex flex-col w-full md:w-1/2">
+
+
+
+                        <div className="ml-[-217px]">
                             <label
-                                htmlFor="cep"
+                                htmlFor="cnpj"
                                 className="block text-stone-500 text-base font-sans mb-2"
                             >
-                                CEP
+                                CNPJ
                             </label>
                             <input
                                 type="text"
-                                id="cep"
-                                name="cep"
-                                value={formData.cep}
+                                id="cnpj"
+                                name="cnpj"
+                                value={formData.cnpj}
                                 onChange={handleChange}
-                                placeholder="12345-678"
-                                className="shadow-2xl w-full h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="000.000.000/00"
+                                className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
+
+                        <div className="ml-">
+                            <label
+                                htmlFor="cidade"
+                                className="block text-stone-500 text-base font-sans mb-2"
+                            >
+                                Cidade
+                            </label>
+                            <input
+                                type="text"
+                                id="cidade"
+                                name="cidade"
+                                value={formData.cep}
+                                onChange={handleChange}
+                                className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        
                     </div>
-                    <div className="mt-6 flex justify-center">
+
+
+
+                    <div className="flex flex-wrap gap-4 mt-6">
+                        <div className="flex flex-col w-full md:w-1/2">
+                            <label
+                                htmlFor="telefone"
+                                className="block text-stone-500 text-base font-sans mb-2"
+                            >
+                                Telefone
+                            </label>
+                            <div className="relative">
+                                <input
+                                    type="number"
+                                    id="telefone"
+                                    name="telefone"
+                                    value={formData.telefone}
+                                    onChange={handleChange}
+                                    placeholder="(11)00000-0000"
+                                    className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                        </div>
+
+
+
+                        <div className="ml-[-217px]">
+                            <label
+                                htmlFor="telefone"
+                                className="block text-stone-500 text-base font-sans mb-2"
+                            >
+                                Telefone Empresa
+                            </label>
+                            <div className="relative">
+                                <input
+                                    type="number"
+                                    id="telefone"
+                                    name="telefone"
+                                    value={formData.telefone_clinica}
+                                    onChange={handleChange}
+                                    placeholder="(11)00000-0000"
+                                    className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="ml-">
+                            <label
+                                htmlFor="estado"
+                                className="block text-stone-500 text-base font-sans mb-2"
+                            >
+                                Estado
+                            </label>
+                            <input
+                                type="text"
+                                id="estado"
+                                name="estado"
+                                value={formData.cep}
+                                onChange={handleChange}
+                                className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        
+                    </div>
+                    <div className="mt-8 flex justify-center">
                         <button
                             type="submit"
-                            className="bg-blue-900 text-white rounded-3xl px-8 py-4 text-lg"
+                            className="bg-blue-900 text-white rounded-3xl px-8 py-4 text-xl font-bold"
                         >
                             CADASTRAR
                         </button>

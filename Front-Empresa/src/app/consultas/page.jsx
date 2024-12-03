@@ -75,7 +75,7 @@ function Consultas() {
       <NavBarLayout>
         <div className="flex-1 p-4">
           <div className="flex">
-            <h1 className="text-4xl font-bold text-[--font] p-10 mt-[100px]">CONSULTAS</h1>
+            <h1 className="text-5xl font-bold text-[--font] p-10 mt-[100px]">CONSULTAS</h1>
             <div className="relative">
               <input
                 type="text"
@@ -97,10 +97,10 @@ function Consultas() {
             setModalOpen={() => setOpenModal(!openModal)}
           />
 
-          <div className="flex mt-20 ml-[300px] grid">
+          <div className="flex mt-20 ml-[200px] grid">
             <div
               id="contanierConsulta"
-              className="flex flex-wrap gap-6 w-[1600px] h-[100px]"
+              className="flex flex-wrap gap-6 w-[1300px] h-[100px]"
             >
               {consultas.map((consulta, index) => (
                 <ConsultaCard key={index} consulta={consulta} />
