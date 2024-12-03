@@ -39,7 +39,7 @@ function EmpresaCard({ empresa }) {
         <h1 className="text-3xl text-gray-500 mt-3 ml-[60px]">{cnpj}</h1>
       </div>
 
-      <div className="flex justify-center items-center ml-[-260px]">
+      <div className="flex justify-center items-center ml-[-190px]">
         <div className="flex ml-[28vh] mt-5">
           <img src="./img/local.png" alt="" className="h-9" />
           <h1 className="text-3xl text-gray-500 mt-2 ml-[68px]">{cidade}, </h1>
@@ -57,23 +57,23 @@ function EmpresaCard({ empresa }) {
       <div className="h-52 w-3/5 bg-white mt-10 ml-[200px] rounded-lg">
         <div className="bg-white w-5 h-5 rounded-lg"></div>
         <div className="flex ml-[100px]">
-          <img src="./img/pessoa.icon.png" alt="" className="h-8 ml-[20px]" />
-          <h1 className="text-gray-500 text-2xl mt-1 ml-24">{nomeProprietario}</h1>
+          <img src="./img/pessoa.icon.png" alt="" className="h-8 ml-[10px]" />
+          <h1 className="text-gray-500 text-2xl mt-1 ml-16">{nomeProprietario}</h1>
         </div>
 
         <div className="flex mt-5 ml-[100px] ">
-          <img src="./img/email.png" alt="" className="h-6 ml-[20px]" />
-          <h1 className="text-gray-500 text-2xl mt-1 ml-24">{email}</h1>
+          <img src="./img/email.png" alt="" className="h-6 ml-[10px]" />
+          <h1 className="text-gray-500 text-2xl mt-1 ml-16">{email}</h1>
         </div>
 
         <div className="flex mt-5 ml-[100px]">
-          <img src="./img/fone.png" alt="" className="h-6 ml-[20px]"  />
-          <h1 className="text-gray-500 text-2xl mt-1 ml-24">{telefone}</h1>
+          <img src="./img/fone.png" alt="" className="h-6 ml-[10px]"  />
+          <h1 className="text-gray-500 text-2xl mt-1 ml-16">{telefone}</h1>
         </div>
       </div>
 
       <div className="flex justify-center items-center">
-     <button className="bg-blue-900 text-xl w-[200px] h-[40px] mt-[100px] text-white rounded-full ">EDITAR</button>
+     <button className="bg-blue-900 text-xl w-[200px] h-[40px] mt-[20px] text-white rounded-full ">EDITAR</button>
      </div>
 
 
