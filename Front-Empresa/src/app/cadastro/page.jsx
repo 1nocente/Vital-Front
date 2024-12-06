@@ -156,7 +156,7 @@ const CadastroEmpresa = () => {
                             className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
-                    <div className="flex flex-col w-full md:w-1/2 ml-4">
+                    <div className="flex flex-col w-full md:w-1/2 ml-8">
                             <label
                                 htmlFor="nomeProprietario"
                                 className="block text-stone-500 text-base font-sans mb-2"
@@ -276,16 +276,18 @@ const CadastroEmpresa = () => {
                             >
                                 CNPJ
                             </label>
-                            <input
-                                type="text"
-                                id="cnpj"
-                                name="cnpj"
-                                value={formData.cnpj}
-                                onChange={handleChange}
-                                placeholder="000.000.000/00"
-                                className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            />
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    id="cnpj"
+                                    name="cnpj"
+                                    value={formData.cnpj}
+                                    onChange={handleChange}
+                                    className="shadow-2xl w-96 h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
                         </div>
+
 
                         <div className="ml-">
                             <label
@@ -333,16 +335,16 @@ const CadastroEmpresa = () => {
 
                         <div className="ml-[-217px]">
                             <label
-                                htmlFor="telefone"
+                                htmlFor="telefone_clinica"
                                 className="block text-stone-500 text-base font-sans mb-2"
                             >
                                 Telefone Empresa
                             </label>
                             <div className="relative">
                                 <input
-                                    type="number"
-                                    id="telefone"
-                                    name="telefone"
+                                    type="text"
+                                    id="telefone_clinica"
+                                    name="telefone_clinica"
                                     value={formData.telefone_clinica}
                                     onChange={handleChange}
                                     placeholder="(11)00000-0000"
